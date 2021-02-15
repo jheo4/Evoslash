@@ -5,14 +5,17 @@ using UnityEngine;
 public class SlashTrigger : MonoBehaviour
 {
     Animator animator;
-    private bool slashing;
+    private Rigidbody sword;
+    private Collider sword_Collider;
 
     // Start is called before the first frame update
     void Start()
     {
         //Get Animator component
         animator = GetComponent<Animator>();
-        slashing = false;
+        sword = GetComponent<Rigidbody>();
+        sword_Collider = GetComponent<Collider>();
+        sword_Collider.enabled = false;
     }
 
     // Update is called once per frame
@@ -22,15 +25,15 @@ public class SlashTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             animator.SetTrigger("slashTrigger");
-            slashing = true;
+            sword_Collider.enabled = true;
         }
     }
-    void FixedUpdate() {
-        slashing = false;
+
+    void DisableCollision() {
+        sword_Collider.enabled = false;
     }
 
-    void onTriggerEnter(Collider c) {
-        Debug.Log("Collide");
+    void OnTriggerEnter(Collider c) {
         if (c.tag == "Zombie") {
             Zombie zombie = c.GetComponent<Zombie>();
             if(zombie != null) {
