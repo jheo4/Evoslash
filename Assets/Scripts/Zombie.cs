@@ -13,7 +13,7 @@ public class Zombie : MonoBehaviour
     {
         zombieRigidbody = GetComponent<Rigidbody>();
         targetPlayer = FindObjectOfType<PlayerController>().transform;
-        Debug.Log(transform.forward.x + ", " + transform.forward.y + ", " + transform.forward.z);
+        //Debug.Log(transform.forward.x + ", " + transform.forward.y + ", " + transform.forward.z);
     }
 
    // Update is called once per frame
