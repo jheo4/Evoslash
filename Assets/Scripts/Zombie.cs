@@ -12,7 +12,7 @@ public class Zombie : MonoBehaviour
     void Start()
     {
         zombieRigidbody = GetComponent<Rigidbody>();
-        targetPlayer = FindObjectOfType<PlayerController>().transform;
+        targetPlayer = FindObjectOfType<PlayerMovement>().transform;
         //Debug.Log(transform.forward.x + ", " + transform.forward.y + ", " + transform.forward.z);
     }
 
@@ -25,11 +25,6 @@ public class Zombie : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
-            PlayerController playerController = other.GetComponent<PlayerController>();
-
-            if(playerController != null) {
-                playerController.Die();
-            }
         }
 
         //if(other.tag == "Wall") {
