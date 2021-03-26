@@ -10,6 +10,7 @@ public class IKControl : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody rigidbody;
     public Sword sword;
+    private Animator swordAnimator;
     public Transform swordTransform;
     public Transform rightHandle;
 
@@ -20,6 +21,7 @@ public class IKControl : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+        swordAnimator = sword.GetComponent<Animator>();
     }
 
 
@@ -35,23 +37,37 @@ public class IKControl : MonoBehaviour
     {
         // 1. Sense the input: fire
         // 2. Activate the animation of sword
-        //if (playerInput.fire)
-        //{
-        //    sword.Attack();
-        //}
+        if (playerInput.fire)
+        {
+            sword.Attack();
+        }
     }
 
     void OnAnimatorIK()
     {
         float turningAngle = playerInput.rotate * 100 * Time.fixedDeltaTime;
 
-        //Sword Hink for IK
-        sword.transform.position = playerAnimator.GetIKPosition(AvatarIKGoal.RightHand);
-        sword.transform.rotation = rigidbody.rotation * Quaternion.Euler(40, turningAngle, 0f);
+        AnimatorStateInfo astate = swordAnimator.GetCurrentAnimatorStateInfo(0);
+        if (astate.IsName("Katana Swing"))
+        {
+            // Right Hand
+            playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1.0f);
+            playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1.0f);
+            playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, rightHandle.position);
+            playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, rightHandle.rotation);
+
+        } else
+        {
+            //Sword Hink for IK
+            sword.transform.position = playerAnimator.GetIKPosition(AvatarIKGoal.RightHand);
+            sword.transform.rotation = rigidbody.rotation * Quaternion.Euler(40, turningAngle, 0f);
+        }
+
+
 
         // Right Hand
-        playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-        playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
+        playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1.0f);
+        playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1.0f);
         playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, rightHandle.position);
         playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, rightHandle.rotation);
 
