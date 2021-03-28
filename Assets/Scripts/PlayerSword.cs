@@ -6,15 +6,17 @@ public class PlayerSword : MonoBehaviour
 {
     private Animator playerAnimator;
     private PlayerInput playerInput;
+    private Rigidbody rigidbody;
     public Sword sword;
     public Transform swordTransform;
-    public Transform leftHandle, rightHandle;
+    public Transform rightHandle;
 
     // Start is called before the first frame update
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void OnEnable() {
@@ -37,8 +39,9 @@ public class PlayerSword : MonoBehaviour
 
     void OnAnimatorIK() {
         // Sword Hink for IK
-        sword.transform.position = playerAnimator.GetIKHintPosition(AvatarIKHint.RightElbow);
-        sword.transform.rotation = this.transform.rotation;
+        float turningAngle = playerInput.rotate * 100 * Time.fixedDeltaTime;
+        sword.transform.position = playerAnimator.GetIKPosition(AvatarIKGoal.RightHand);
+        sword.transform.rotation = rigidbody.rotation * Quaternion.Euler(40, turningAngle, 0f);
 
         // Right Hand
         playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);

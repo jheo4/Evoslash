@@ -366,7 +366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410866334}
-  m_LocalRotation: {x: 0.22975287, y: 0.000000008373046, z: -0.0000000019766078, w: 0.973249}
+  m_LocalRotation: {x: 0.22975287, y: -0.000000008373046, z: 0.0000000019766078, w: 0.973249}
   m_LocalPosition: {x: 0, y: 2.1, z: -5.444}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1791,7 +1791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3d88c319821b89f4086eb24c6b2faee2, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3d88c319821b89f4086eb24c6b2faee2, type: 3}
       propertyPath: m_LocalScale.x
@@ -2397,12 +2397,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c390c466305dd75ae87f6d03dfc00653, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58bcc37c0606832498edb1579dd6fe08, type: 3}
---- !u!4 &1568598881 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400060, guid: 98cdee121d6e440de9fb99a7c24fa0da,
-    type: 3}
-  m_PrefabInstance: {fileID: 469015449}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1578770521 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 3d88c319821b89f4086eb24c6b2faee2,
@@ -2427,6 +2421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378a0ccea5784724d9a8769414bb89fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 0}
   swingAudio: {fileID: 8300000, guid: 5a096f7c1dd7d784c821b6f69678d551, type: 3}
   contactAudio: {fileID: 8300000, guid: 733576b59b495b645ab0ac1be6582ef6, type: 3}
   damage: 100
@@ -2716,7 +2711,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877394297}
-  m_LocalRotation: {x: 0.22975287, y: 0.000000008373046, z: -0.0000000019766078, w: 0.973249}
+  m_LocalRotation: {x: 0.22975287, y: -0.000000008373046, z: 0.0000000019766078, w: 0.973249}
   m_LocalPosition: {x: 0, y: 2.1, z: -5.444}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2796,21 +2791,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1929723005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929722998}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42440afa5ff10594897ff8d1f8c634be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sword: {fileID: 0}
-  swordTransform: {fileID: 63383257}
-  rightHandle: {fileID: 1568598881}
 --- !u!114 &1929723006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2825,7 +2805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 1578770523}
   swordTransform: {fileID: 1578770522}
-  leftHandle: {fileID: 0}
   rightHandle: {fileID: 1201077050}
 --- !u!1001 &1933703908
 PrefabInstance:
