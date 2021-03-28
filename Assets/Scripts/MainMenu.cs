@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     // Public instance fields
     public GameObject mainMenu;
     public GameObject creditsScreen;
+    public string startScene = "DemoScene";
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour
     // OnStart is called when the user clicks the "Start" button
     public void OnStart()
     {
-        SceneManager.LoadScene("DemoScene");
+        SceneManager.LoadScene(this.startScene);
     }
 
     // OnCredits is called when the user clicks the "Credits" button

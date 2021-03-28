@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     // Instance fields
     private InGameUI ui;
+    private EndGameScreen endGameScreen;
+    private PauseMenu pauseMenu;
     private GameState state;
     private int waveNumber;
     private float timerRemaining;
@@ -61,10 +63,24 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Obtain a reference to the UI
-        this.ui = (InGameUI)FindObjectOfType(typeof(InGameUI));
+        this.ui = FindObjectOfType<InGameUI>();
         if (this.ui == null)
         {
             Debug.LogError("No instance of InGameUI found in scene");
+        }
+
+        // Obtain a reference to the end game screen
+        this.endGameScreen = FindObjectOfType<EndGameScreen>();
+        if (this.ui == null)
+        {
+            Debug.LogError("No instance of EndGameScreen found in scene");
+        }
+
+        // Obtain a reference to the pause menu
+        this.pauseMenu = FindObjectOfType<PauseMenu>();
+        if (this.ui == null)
+        {
+            Debug.LogError("No instance of PauseMenu found in scene");
         }
 
         // Set the game to starting and wait 5 seconds before spawning enemies
@@ -176,15 +192,15 @@ public class GameManager : MonoBehaviour
     void WinGame()
     {
         this.state = GameState.VICTORY;
-        // TODO show game win screen
-        Debug.Log("Victory");
+        this.pauseMenu.Disable();
+        this.endGameScreen.ShowLoss();
     }
 
     // Sets the game state to loss and shows the end game screen
     public void LoseGame()
     {
         this.state = GameState.LOSS;
-        // TODO show game loss screen
-        Debug.Log("Loss");
+        this.pauseMenu.Disable();
+        this.endGameScreen.ShowLoss();
     }
 }

@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     // Instance fields
     private MenuScreenBlur screenBlur;
+    private bool disabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.disabled) return;
+
         // Check for Escape being pressed
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -40,6 +43,13 @@ public class PauseMenu : MonoBehaviour
                 this.Hide();
             }
         }
+    }
+
+    // Used to disable the pause menu
+    // to stop it from showing even when the Esc key is pressed
+    public void Disable()
+    {
+        this.disabled = true;
     }
 
     // Shows the pause menu and freezes time
