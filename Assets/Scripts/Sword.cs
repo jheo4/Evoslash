@@ -5,60 +5,61 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     Animator animator;
-    Collider collider;
-    private bool isSwing = false;
-    public AudioSource swordSwingAudio;
-    public AudioSource swordContactAudio;
+    public Collider collider;
+    private AudioSource audioPlayer;
+    public AudioClip swingAudio, contactAudio;
+
+    public float damage = 100;
+    public float delayBetweenAttack = 0.8f;
+    public float attackTime = 1.0f;
+    private float lastAttackTime;
 
     public enum State
     { // For future use
         Ready,
-        Moving
+        Attack
     }
     public State state { get; private set; }
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        collider = GetComponent<Collider>();
-        //collider.enabled = false;
+    private void Awake() {
+        audioPlayer = GetComponentInChildren<AudioSource>();
+        animator = GetComponentInChildren<Animator>();
+        collider = GetComponentInChildren<Collider>();
     }
 
-    public void Attack()
-    {
-        // change the
+    private void OnEnable() {
+        lastAttackTime = 0;
+        state = State.Ready;
+    }
+
+    public void Attack() {
+        if(state == State.Ready && Time.time >= lastAttackTime + delayBetweenAttack) {
+            lastAttackTime = Time.time;
+            StartCoroutine(Swing());
+        }
+    }
+
+    // Swing Coroutine
+    private IEnumerator Swing() {
+        state = State.Attack;
+        audioPlayer.PlayOneShot(swingAudio);
         animator.SetTrigger("SlashTrigger");
-        print("Attack!");
-        swordSwingAudio.Play();
-    }
-
-
-    void Update()
-    {
-        if (animator.GetCurrentAnimatorClipInfo(0).Length > 0 && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Katana Swing")
-        {
-            isSwing = true;
-        }
-        else
-        {
-            isSwing = false;
-        }
+        yield return new WaitForSeconds(attackTime);
+        state = State.Ready;
     }
 
     void OnTriggerEnter(Collider c)
     {
-        if (isSwing)
+        if (state == State.Attack && c.tag == "Zombie")
         {
-            if (c.tag == "Zombie")
+            print("Hit zombie!");
+            Zombie zombie = c.GetComponent<Zombie>();
+            if (zombie != null)
             {
-                Zombie zombie = c.GetComponent<Zombie>();
-                if (zombie != null)
-                {
-                    swordContactAudio.Play();
-                    zombie.Die();
-                }
+                audioPlayer.PlayOneShot(contactAudio);
+                zombie.Die();
             }
         }
-           
+
     }
 }
