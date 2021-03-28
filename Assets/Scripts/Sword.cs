@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     Animator animator;
-    public Collider collider;
+    private Collider collider;
     private AudioSource audioPlayer;
     public AudioClip swingAudio, contactAudio;
 
