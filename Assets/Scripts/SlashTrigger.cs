@@ -22,9 +22,9 @@ public class SlashTrigger : MonoBehaviour
     void Update()
     {
         //Play spin animation on key press
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator.SetTrigger("slashTrigger");
+            animator.SetTrigger("Katana Swing");
             sword_Collider.enabled = true;
         }
     }
