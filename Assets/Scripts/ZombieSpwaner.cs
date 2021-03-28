@@ -25,7 +25,6 @@ public class ZombieSpwaner : MonoBehaviour
         timeAfterSpawn += Time.deltaTime;
         if(timeAfterSpawn > spawnRate) {
             // Attempt to spawn a zombie
-            Debug.Log(GameManager.instance);
             if (GameManager.instance.AttemptEnemySpawn())
             {
                 GameObject zombie = Instantiate(ZombiePrefab, transform.position, transform.rotation);
