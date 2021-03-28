@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(GameManager.instance != null && GameManager.instance.isEnd) {
+        if(GameManager.instance != null && GameManager.instance.IsEnd) {
             move = 0;
             rotate = 0;
             jump= false;

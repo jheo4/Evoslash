@@ -16,7 +16,7 @@ public class ZombieSpwaner : MonoBehaviour
     void Start()
     {
         timeAfterSpawn = 0f;
-        spawnRate = Random.RandomRange(spawnRateMin, spawnRateMax);
+        spawnRate = Random.Range(spawnRateMin, spawnRateMax);
     }
 
     // Update is called once per frame
@@ -24,11 +24,15 @@ public class ZombieSpwaner : MonoBehaviour
     {
         timeAfterSpawn += Time.deltaTime;
         if(timeAfterSpawn > spawnRate) {
-            // Spawn a zombie
-            GameObject zombie = Instantiate(ZombiePrefab, transform.position, transform.rotation);
+            // Attempt to spawn a zombie
+            Debug.Log(GameManager.instance);
+            if (GameManager.instance.AttemptEnemySpawn())
+            {
+                GameObject zombie = Instantiate(ZombiePrefab, transform.position, transform.rotation);
+            }
 
             timeAfterSpawn = 0f;
-            spawnRate = Random.RandomRange(spawnRateMin, spawnRateMax);
+            spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         }
     }
 }

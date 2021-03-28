@@ -35,6 +35,7 @@ public class Zombie : MonoBehaviour
     }
 
     public void Die() {
+        GameManager.instance.OnEnemyDeath();
         Destroy(gameObject);
     }
 }
