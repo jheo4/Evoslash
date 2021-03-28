@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Zombie
+  - Weapon
   layers:
   - Default
   - TransparentFX

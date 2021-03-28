@@ -21,10 +21,6 @@ public class Zombie : MonoBehaviour
     {
         transform.LookAt(targetPlayer);
         zombieRigidbody.velocity = transform.forward * speed;
-        if (Input.GetKeyDown("5"))
-        {
-            this.Die();
-        }
     }
 
     void OnTriggerEnter(Collider other) {
