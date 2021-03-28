@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
     {
         this.state = GameState.VICTORY;
         this.pauseMenu.Disable();
-        this.endGameScreen.ShowLoss();
+        this.endGameScreen.ShowVictory();
     }
 
     // Sets the game state to loss and shows the end game screen
