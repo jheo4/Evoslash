@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
 
         if(Physics.Raycast(muzzleTransform.position, muzzleTransform.forward, out hit, range)) {
             IDamageable target = hit.collider.GetComponent<IDamageable>();
-            if(target != null) target.OnDamage(damage, hit.point, hit.normal);
+            if(target != null) target.OnHit(damage, hit.point, hit.normal);
             hitPosition = hit.point;
         }
         else {
