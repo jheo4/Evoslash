@@ -5,10 +5,23 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
+    public static InGameUI instance
+    {
+        get {
+            if(inGameUIInstance == null) {
+                inGameUIInstance = FindObjectOfType<InGameUI>();
+            }
+            return inGameUIInstance;
+        }
+    }
+
+    private static InGameUI inGameUIInstance;
+
     // Public instance fields
     public Text primaryText;
     public Text secondaryText;
     public Text tertiaryText;
+    public Text ammoText;
     public Image healthBar;
     public Image experienceBar;
 
@@ -25,6 +38,11 @@ public class InGameUI : MonoBehaviour
         this.primaryText.text = primary.ToUpper();
         this.secondaryText.text = secondary;
         this.tertiaryText.text = tertiary;
+    }
+
+
+    public void UpdateAmmoText(int currentAmmoInMagazine, int currentAmmo) {
+        ammoText.text = currentAmmoInMagazine + "/" + currentAmmo;
     }
 
     // Sets the health in the in-game UI

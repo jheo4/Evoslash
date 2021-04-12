@@ -12,6 +12,8 @@ public class PlayerInput : MonoBehaviour
     // Weapon Inputs
     public string fireButtonName = "Fire1";
     public string reloadButtonName = "Reload"; // gun only
+    public string useSwordButtonName = "UseSword";
+    public string useGunButtonName = "UseGun";
 
     // Input Key States
     public float move { get; private set; }
@@ -19,6 +21,8 @@ public class PlayerInput : MonoBehaviour
     public bool jump { get; private set; }
     public bool fire { get; private set; }
     public bool reload { get; private set; }
+    public bool useSword { get; private set; }
+    public bool useGun { get; private set; }
 
 
     // Update is called once per frame
@@ -39,5 +43,7 @@ public class PlayerInput : MonoBehaviour
         jump = Input.GetButton(jumpButtonName);
         fire = Input.GetButton(fireButtonName);
         reload = Input.GetButtonDown(reloadButtonName);
+        useGun = Input.GetButtonDown(useGunButtonName);
+        useSword = Input.GetButtonDown(useSwordButtonName);
     }
 }
