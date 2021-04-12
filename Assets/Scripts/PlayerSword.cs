@@ -32,21 +32,27 @@ public class PlayerSword : MonoBehaviour
     {
         // 1. Sense the input: fire
         // 2. Activate the animation of sword
-        if(playerInput.fire) {
+        if(playerInput.useGun)
+            OnDisable();
+        else if(playerInput.useSword)
+            OnEnable();
+        else if(playerInput.fire && sword.gameObject.active) {
             sword.Attack();
         }
     }
 
     void OnAnimatorIK() {
-        // Sword Hink for IK
-        float turningAngle = playerInput.rotate * 100 * Time.fixedDeltaTime;
-        sword.transform.position = playerAnimator.GetIKPosition(AvatarIKGoal.RightHand);
-        sword.transform.rotation = rigidbody.rotation * Quaternion.Euler(40, turningAngle, 0f);
+        if(sword.gameObject.active) {
+            // Sword Hink for IK
+            float turningAngle = playerInput.rotate * 100 * Time.fixedDeltaTime;
+            sword.transform.position = playerAnimator.GetIKPosition(AvatarIKGoal.RightHand);
+            sword.transform.rotation = rigidbody.rotation * Quaternion.Euler(40, turningAngle, 0f);
 
-        // Right Hand
-        playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);
-        playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);
-        playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, rightHandle.position);
-        playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, rightHandle.rotation);
+            // Right Hand
+            playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);
+            playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);
+            playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, rightHandle.position);
+            playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, rightHandle.rotation);
+        }
     }
 }
