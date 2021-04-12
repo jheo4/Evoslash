@@ -22,13 +22,11 @@ public class InGameUI : MonoBehaviour
     public Text secondaryText;
     public Text tertiaryText;
     public Text ammoText;
-    public Image healthBar;
     public Image experienceBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.SetHealth(1.0f);
         this.SetExperience(0.0f);
     }
 
@@ -43,12 +41,6 @@ public class InGameUI : MonoBehaviour
 
     public void UpdateAmmoText(int currentAmmoInMagazine, int currentAmmo) {
         ammoText.text = currentAmmoInMagazine + "/" + currentAmmo;
-    }
-
-    // Sets the health in the in-game UI
-    public void SetHealth(float health)
-    {
-        this.healthBar.rectTransform.localScale = new Vector3(health, 1.0f, 1.0f);
     }
 
     // Sets the experience in the in-game UI

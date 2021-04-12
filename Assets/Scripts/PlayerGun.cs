@@ -51,7 +51,7 @@ public class PlayerGun : MonoBehaviour
     private void UpdateUI()
     {
         if(gun != null && InGameUI.instance != null) {
-            if(gun.gameObject.active && InGameUI.instance.gameObject.active) {
+            if(InGameUI.instance.gameObject.active) {
                 InGameUI.instance.UpdateAmmoText(gun.currentAmmoInMagazine, gun.currentAmmo);
             }
         }

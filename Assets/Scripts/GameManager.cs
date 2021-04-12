@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
             || this.state == GameState.LOSS;
     }
 
+    private void Awake()
+    {
+        if(instance != this) Destroy(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +93,8 @@ public class GameManager : MonoBehaviour
         this.waveNumber = 0;
         this.timerRemaining = 5.0f;
         this.UpdateUI();
+
+        FindObjectOfType<PlayerHP>().onDeath += LoseGame; // add an subscriber to the delegate
     }
 
     // Update is called every frame
