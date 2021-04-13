@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13871288, y: 0.18038559, z: 0.051460218}
-  m_Center: {x: -0.0007697106, y: 0.07442017, z: 0.004059148}
+  m_Size: {x: 0.13871288, y: 0.19738834, z: 0.13229182}
+  m_Center: {x: -0.0007697106, y: 0.08292154, z: 0.022953391}
 --- !u!65 &565914600
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -87,7 +87,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100078, guid: 5a35c5f0a89b9654d897ccd7c8f81bd0, type: 3}
       propertyPath: m_Name
-      value: Skeleton@Skin
+      value: Skeleton@Skin Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 100078, guid: 5a35c5f0a89b9654d897ccd7c8f81bd0, type: 3}
+      propertyPath: m_TagString
+      value: Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 5a35c5f0a89b9654d897ccd7c8f81bd0, type: 3}
       propertyPath: m_RootOrder
