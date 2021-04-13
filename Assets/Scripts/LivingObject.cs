@@ -9,7 +9,6 @@ public class LivingObject : MonoBehaviour, IDamageable
     public float HP {get; protected set;}
     public bool isLive {get; protected set;}
     public event Action onDeath;
-
     protected virtual void OnEnable()
     {
         isLive = true;
