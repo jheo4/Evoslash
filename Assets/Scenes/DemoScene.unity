@@ -762,7 +762,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410866334}
-  m_LocalRotation: {x: 0.22975287, y: -0.000000008373046, z: 0.0000000019766078, w: 0.973249}
+  m_LocalRotation: {x: 0.22975287, y: 0.000000008373046, z: -0.0000000019766078, w: 0.973249}
   m_LocalPosition: {x: 0, y: 2.1, z: -5.444}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1595,6 +1595,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.291824, y: 2.651552, z: 1.2344676}
   m_Center: {x: 0, y: 1.325776, z: 0}
+--- !u!1 &1086337467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2474573668690360177, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+    type: 3}
+  m_PrefabInstance: {fileID: 2474573670620056327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1086337477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086337467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a49e9948da8194dbfc4b2215c954ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1086337478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086337467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d87356c040a09b47a1bfb83b090efdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
+  gameObject: {fileID: 1086337467}
 --- !u!1 &1111014687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2675,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877394297}
-  m_LocalRotation: {x: 0.22975287, y: -0.000000008373046, z: 0.0000000019766078, w: 0.973249}
+  m_LocalRotation: {x: 0.22975287, y: 0.000000008373046, z: -0.0000000019766078, w: 0.973249}
   m_LocalPosition: {x: 0, y: 2.1, z: -5.444}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7829,6 +7861,26 @@ PrefabInstance:
       propertyPath: swordTransform
       value: 
       objectReference: {fileID: 1578770522}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.6305785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3080492
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8652892
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.030458927
+      objectReference: {fileID: 0}
     - target: {fileID: 2474573669293803573, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
         type: 3}
       propertyPath: LightsModule.light
