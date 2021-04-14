@@ -1959,23 +1959,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2474573670620056327}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1086337468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086337467}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee8b19e6e59bf947b2e29d9a058834d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EXPSlider: {fileID: 1934186879}
-  level: 0
-  levelUpExp: 0
-  levelUpSound: {fileID: 0}
-  tmp: {fileID: 0}
 --- !u!114 &1086337477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,6 +2919,7 @@ MonoBehaviour:
   levelUpExp: 0
   levelUpSound: {fileID: 8300000, guid: df39c189cd4acc144ad7f06142c6436a, type: 3}
   tmp: {fileID: 418251868}
+  playerReference: {fileID: 1086337467}
 --- !u!82 &1578770526
 AudioSource:
   m_ObjectHideFlags: 0
