@@ -73,4 +73,10 @@ public class InGameUI : MonoBehaviour
     {
         this.levelText.text = "Level: " + level;
     }
+
+    // Re-render the list of powerups according to the given list
+    public void UpdatePowerups(List<Powerup.Active> powerups)
+    {
+        // TODO implement
+    }
 }

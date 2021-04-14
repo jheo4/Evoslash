@@ -2,16 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Powerup : MonoBehaviour
+public class Powerup : MonoBehaviour, IItem
 {
-    Collider collider;
-    public AudioSource powerupAudio;
+    public Type type = Type.Invincibility;
+    public int duration = 12;
 
+    public enum Type {
+        Speed,
+        Invincibility
+    }
+
+    public class Active
+    {
+        public int remaining;
+        public Type type;
+
+        public Active(int remaining, Type type)
+        {
+            this.remaining = remaining;
+            this.type = type;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<Collider>();
+
     }
 
     // Update is called once per frame
@@ -20,14 +36,13 @@ public class Powerup : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider c)
+    public void Use(GameObject target)
     {
-        if (c.tag == "Player")
+        PowerupManager manager = target.GetComponent<PowerupManager>();
+        if (manager != null)
         {
-            print("player power up!");
-            powerupAudio.Play();
             Destroy(this.gameObject);
+            manager.PickUp(this.type, this.duration);
         }
-
     }
 }
