@@ -13,6 +13,7 @@ public class Sword : MonoBehaviour
     public float delayBetweenAttack = 0.8f;
     public float attackTime = 1.0f;
     private float lastAttackTime;
+    public PlayerEXP playerEXP;
 
     public enum State
     { // For future use
@@ -25,6 +26,7 @@ public class Sword : MonoBehaviour
         audioPlayer = GetComponentInChildren<AudioSource>();
         animator = GetComponentInChildren<Animator>();
         collider = GetComponentInChildren<Collider>();
+        playerEXP = GetComponent<PlayerEXP>();
     }
 
     private void OnEnable() {
@@ -56,6 +58,7 @@ public class Sword : MonoBehaviour
             Zombie zombie = c.GetComponent<Zombie>();
             if (zombie != null)
             {
+                playerEXP.addExperience(10);
                 audioPlayer.PlayOneShot(contactAudio);
                 zombie.Die();
             }
