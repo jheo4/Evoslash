@@ -7861,6 +7861,26 @@ PrefabInstance:
       propertyPath: swordTransform
       value: 
       objectReference: {fileID: 1578770522}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.6305785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3080492
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8652892
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474573668690360189, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.030458927
+      objectReference: {fileID: 0}
     - target: {fileID: 2474573669293803573, guid: a0252c54fc0ccb8a3bcd7c5ec8d01149,
         type: 3}
       propertyPath: LightsModule.light
