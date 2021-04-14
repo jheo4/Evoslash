@@ -12,7 +12,7 @@ public class Powerup : MonoBehaviour, IItem
         Invincibility
     }
 
-    public class Active
+public class Active
     {
         public int remaining;
         public Type type;

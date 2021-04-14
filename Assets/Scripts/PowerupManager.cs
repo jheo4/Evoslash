@@ -41,7 +41,24 @@ public class PowerupManager : MonoBehaviour
 
     public void PickUp(Powerup.Type type, int duration)
     {
-        this.activePowerups.Add(new Powerup.Active(duration, type));
+        // See if there are any active powerups with the same type.
+        // If so, simply extend their duration
+        bool found = false;
+        for (int i = 0; i < this.activePowerups.Count; ++i)
+        {
+            if (this.activePowerups[i].type == type)
+            {
+                this.activePowerups[i].remaining += duration;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            this.activePowerups.Add(new Powerup.Active(duration, type));
+        }
+
         this.UpdateUI();
     }
 

@@ -24,15 +24,26 @@ public class InGameUI : MonoBehaviour
     public Text ammoText;
     public Image experienceBar;
     public Text levelText;
+    public GameObject activePowerupTemplate = null;
+    public Transform spawnPoint = null;
+    public float powerupPadding = 2f;
+    // Yes this is kinda terrible but I'm not sure what the best solution is
+    // without some heavy Dictionary inspector editor
+    public Sprite speedSprite;
+    public Sprite invincibilitySprite;
 
     // Private instance fields
     private float maxExperience;
     private float experience;
+    private List<GameObject> activePowerups = new List<GameObject>();
+    private Dictionary<Powerup.Type, Sprite> powerupSprites = new Dictionary<Powerup.Type, Sprite>();
 
     // Start is called before the first frame update
     void Start()
     {
         this.SetExperience(0.0f);
+        this.powerupSprites[Powerup.Type.Speed] = this.speedSprite;
+        this.powerupSprites[Powerup.Type.Invincibility] = this.invincibilitySprite;
     }
 
     // Sets the objective text on the in-game UI
@@ -65,7 +76,7 @@ public class InGameUI : MonoBehaviour
     public void updateExperience()
     {
         this.experienceBar.rectTransform.localScale =
-            new Vector3(this.experience / this.maxExperience, 1.0f, 1.0f);
+            new Vector3(Mathf.Clamp(this.experience / this.maxExperience, 0f, 1f), 1.0f, 1.0f);
     }
 
     // Set the level in the in-game UI
@@ -77,6 +88,39 @@ public class InGameUI : MonoBehaviour
     // Re-render the list of powerups according to the given list
     public void UpdatePowerups(List<Powerup.Active> powerups)
     {
-        // TODO implement
+        // Disable all existing powerup UI components
+        for (int i = 0; i < this.activePowerups.Count; ++i)
+        {
+            this.activePowerups[i].SetActive(false);
+        }
+
+        // Instantiate new powerup UI components as needed
+        int newComponents = Mathf.Max(0, powerups.Count - this.activePowerups.Count);
+        for (int i = 0; i < newComponents; ++i)
+        {
+            GameObject spawnedItem = Instantiate(this.activePowerupTemplate,
+                this.spawnPoint.position, this.spawnPoint.rotation);
+            spawnedItem.transform.SetParent(this.spawnPoint, false);
+            this.activePowerups.Add(spawnedItem);
+        }
+
+        // Make active and populate the rest of the UI components
+        float currentOffset = 0f;
+        for (int i = 0; i < powerups.Count; ++i)
+        {
+            GameObject powerupComponent = this.activePowerups[i];
+            Powerup.Active powerupDefinition = powerups[i];
+            Sprite sprite;
+            powerupSprites.TryGetValue(powerupDefinition.type, out sprite);
+            if (sprite != null)
+            {
+                powerupComponent.SetActive(true);
+                ActivePowerup contents = powerupComponent.GetComponent<ActivePowerup>();
+                contents.duration.text = powerupDefinition.remaining.ToString();
+                contents.icon.sprite = sprite;
+
+                currentOffset += (48 + this.powerupPadding);
+            }
+        }
     }
 }
