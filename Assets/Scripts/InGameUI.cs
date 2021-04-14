@@ -23,6 +23,11 @@ public class InGameUI : MonoBehaviour
     public Text tertiaryText;
     public Text ammoText;
     public Image experienceBar;
+    public Text levelText;
+
+    // Private instance fields
+    private float maxExperience;
+    private float experience;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +43,6 @@ public class InGameUI : MonoBehaviour
         this.tertiaryText.text = tertiary;
     }
 
-
     public void UpdateAmmoText(int currentAmmoInMagazine, int currentAmmo) {
         ammoText.text = currentAmmoInMagazine + "/" + currentAmmo;
     }
@@ -46,6 +50,27 @@ public class InGameUI : MonoBehaviour
     // Sets the experience in the in-game UI
     public void SetExperience(float exp)
     {
-        this.experienceBar.rectTransform.localScale = new Vector3(exp, 1.0f, 1.0f);
+        this.experience = exp;
+        this.updateExperience();
+    }
+
+    // Sets the max experience in the in-game UI
+    public void SetMaxExperience(float maxExp)
+    {
+        this.maxExperience = maxExp;
+        this.updateExperience();
+    }
+
+    // Updates the experience bar according to the current exp/max exp
+    public void updateExperience()
+    {
+        this.experienceBar.rectTransform.localScale =
+            new Vector3(this.experience / this.maxExperience, 1.0f, 1.0f);
+    }
+
+    // Set the level in the in-game UI
+    public void SetLevel(int level)
+    {
+        this.levelText.text = "Level: " + level;
     }
 }
