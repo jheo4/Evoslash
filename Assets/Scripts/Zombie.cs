@@ -152,6 +152,8 @@ public class Zombie : LivingObject
         agent.enabled = false;
         anim.SetTrigger("Die");
         audioPlayer.PlayOneShot(deathSound);
+        zombieRigidbody.velocity = transform.forward * 0;
+        zombieRigidbody.freezeRotation = true;
         Collider[] zombieColliders = GetComponents<Collider>();
         for(int i = 0; i < zombieColliders.Length; i++) zombieColliders[i].enabled = false;
         yield return new WaitForSeconds(3.0f);
