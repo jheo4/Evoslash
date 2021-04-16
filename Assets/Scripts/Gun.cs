@@ -47,7 +47,7 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        if(state == State.Ready && Time.time > lastFireTime+fireDelay) {
+        if(state == State.Ready && Time.time > lastFireTime+fireDelay && currentAmmoInMagazine != 0) {
             lastFireTime = Time.time;
             Shot();
         }
