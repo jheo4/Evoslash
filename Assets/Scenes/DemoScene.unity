@@ -1442,6 +1442,7 @@ MonoBehaviour:
   crate3: {fileID: 674219775}
   sword: {fileID: 1578770521}
   text: {fileID: 443607797}
+  spawner: {fileID: 706194974}
 --- !u!1001 &637721686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1642,6 +1643,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.291824, y: 2.651552, z: 1.2344676}
   m_Center: {x: 0, y: 1.325776, z: 0}
+--- !u!1 &706194974 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8463145124512182856, guid: c0ed17b990b57b01fb73fa0ea2e21868,
+    type: 3}
+  m_PrefabInstance: {fileID: 1991256676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &820440046
 PrefabInstance:
   m_ObjectHideFlags: 0

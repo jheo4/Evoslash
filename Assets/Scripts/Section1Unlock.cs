@@ -11,6 +11,7 @@ public class Section1Unlock : MonoBehaviour
     public GameObject crate3;
     public GameObject sword;
     public TextMeshProUGUI text;
+    public GameObject spawner;
     PlayerEXP playerEXP;
     int level;
 
@@ -19,6 +20,7 @@ public class Section1Unlock : MonoBehaviour
     void Start()
     {
         playerEXP = sword.GetComponent<PlayerEXP>();
+        spawner.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class Section1Unlock : MonoBehaviour
     }
 
     void OpenArea() {
+        spawner.SetActive(true);
         Destroy(crate1);
         Destroy(crate2);
         Destroy(crate3);
