@@ -32,7 +32,7 @@ public class Zombie : MonoBehaviour
    // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+        //anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
         switch(currState) {
             case AIState.Chase:
             agent.SetDestination(targetPlayer.transform.position);
