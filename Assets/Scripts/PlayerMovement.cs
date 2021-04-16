@@ -44,4 +44,9 @@ public class PlayerMovement : MonoBehaviour
     private void Jump() {
 
     }
+
+    public void SetMoveSpeedMultplier(float multiplier)
+    {
+        animator.SetFloat("Speed", multiplier);
+    }
 }

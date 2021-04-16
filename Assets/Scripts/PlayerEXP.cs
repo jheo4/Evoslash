@@ -7,33 +7,46 @@ using TMPro;
 public class PlayerEXP : MonoBehaviour
 {
     // Public Instance Variables
-    public Slider EXPSlider;
     public int level;
-    public float levelUpExp;
+    public float baseLevelUpExp = 50f;
     public AudioClip levelUpSound;
-    public TextMeshProUGUI tmp;
     public GameObject playerReference;
 
     // Private Instance Variables
     private AudioSource audioPlayer;
     private float exp;
+    private float levelUpExp;
+    private InGameUI ui;
+
     // Start is called before the first frame update
     void Start()
     {
-        level = 1;
-        levelUpExp = EXPSlider.maxValue;
-        audioPlayer = GetComponent<AudioSource>();
+        this.ui = InGameUI.instance;
+
+        levelUpExp = baseLevelUpExp;
         exp = 0;
+        level = 1;
+        this.UpdateUI();
+
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     // addExperience is called whenever a kill is achieved
     public void addExperience(float add) {
         exp += add;
-        if (exp >= EXPSlider.maxValue) {
+        if (exp >= this.levelUpExp) {
             this.levelUp();
         } else {
-            EXPSlider.value = exp;
+            this.UpdateUI();
         }
+    }
+
+    // Updates the InGameUI with the current values of this script
+    private void UpdateUI()
+    {
+        this.ui.SetMaxExperience(this.levelUpExp);
+        this.ui.SetExperience(this.exp);
+        this.ui.SetLevel(this.level);
     }
 
     // levelUp is called whenever the player reaches the experience threshold
@@ -45,12 +58,12 @@ public class PlayerEXP : MonoBehaviour
         php.Heal(php.HPSlider.maxValue - php.HPSlider.value);
         // play level up noise
         audioPlayer.PlayOneShot(levelUpSound);
-        level += 1;
-        tmp.text = "Level: " + level.ToString();
-        // increse maximum exp needed to level up
-        EXPSlider.maxValue = (25 * level) + EXPSlider.maxValue;
-        EXPSlider.value = 0;
-        exp = 0;
-    }
 
+        level += 1;
+        // increse maximum exp needed to level up
+        this.levelUpExp = (25 * level) + this.baseLevelUpExp;
+        exp = 0;
+
+        this.UpdateUI();
+    }
 }
