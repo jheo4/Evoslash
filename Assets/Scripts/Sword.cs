@@ -43,11 +43,14 @@ public class Sword : MonoBehaviour
 
     // Swing Coroutine
     private IEnumerator Swing() {
-        state = State.Attack;
-        audioPlayer.PlayOneShot(swingAudio);
-        animator.SetTrigger("SlashTrigger");
-        yield return new WaitForSeconds(attackTime);
-        state = State.Ready;
+        if (Time.timeScale != 0)
+        {
+            state = State.Attack;
+            audioPlayer.PlayOneShot(swingAudio);
+            animator.SetTrigger("SlashTrigger");
+            yield return new WaitForSeconds(attackTime);
+            state = State.Ready;
+        }
     }
 
     void OnTriggerEnter(Collider c)

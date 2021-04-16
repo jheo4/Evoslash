@@ -75,14 +75,17 @@ public class Gun : MonoBehaviour
 
     private IEnumerator ShootingEffectRoutine(Vector3 hitPosition)
     {
-        muzzleFireEffect.Play();
-        audioPlayer.PlayOneShot(fireSound);
+        if (Time.timeScale != 0)
+        {
+            muzzleFireEffect.Play();
+            audioPlayer.PlayOneShot(fireSound);
 
-        bulletTrajectoryRenderer.SetPosition(0, muzzleTransform.position);
-        bulletTrajectoryRenderer.SetPosition(1, hitPosition);
-        bulletTrajectoryRenderer.enabled = true;
-        yield return new WaitForSeconds(0.03f);
-        bulletTrajectoryRenderer.enabled = false;
+            bulletTrajectoryRenderer.SetPosition(0, muzzleTransform.position);
+            bulletTrajectoryRenderer.SetPosition(1, hitPosition);
+            bulletTrajectoryRenderer.enabled = true;
+            yield return new WaitForSeconds(0.03f);
+            bulletTrajectoryRenderer.enabled = false;
+        }
     }
 
     public bool Reload()
