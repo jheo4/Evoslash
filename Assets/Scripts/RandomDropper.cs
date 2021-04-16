@@ -27,7 +27,7 @@ public class RandomDropper : MonoBehaviour
        if (timePassed >= rate) {
            timePassed = 0f;
            this.DropPickup();
-           navMeshAgent.SetDestination(RandomPosition(transform.position,50,-1));
+           navMeshAgent.SetDestination(RandomPosition(transform.position,40,-1));
        }
     }
 
