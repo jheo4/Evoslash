@@ -30,11 +30,11 @@ public class PlayerGun : MonoBehaviour
     private void Update()
     {
         if(playerInput.useGun) {
-            OnEnable();
+            Invoke("OnEnable", 0.4f);
             playerAnimator.SetBool("UseGun", true);
         }
         else if(playerInput.useSword) {
-            OnDisable();
+            Invoke("OnDisable", 0.4f);
             playerAnimator.SetBool("UseGun", false);
         }
         else if(playerInput.fire && gun.gameObject.active)

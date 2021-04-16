@@ -33,9 +33,9 @@ public class PlayerSword : MonoBehaviour
         // 1. Sense the input: fire
         // 2. Activate the animation of sword
         if(playerInput.useGun)
-            OnDisable();
+            Invoke("OnDisable", 0.4f);
         else if(playerInput.useSword)
-            OnEnable();
+            Invoke("OnEnable",0.4f);
         else if(playerInput.fire && sword.gameObject.active) {
             sword.Attack();
         }
