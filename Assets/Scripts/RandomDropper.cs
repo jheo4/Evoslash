@@ -12,12 +12,14 @@ public class RandomDropper : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private float timePassed;
     private float rate = 10f;
+    private List<GameObject> powerups;
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(RandomPosition(transform.position,10,-1));
         timePassed = 0;
+        powerups = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,8 @@ public class RandomDropper : MonoBehaviour
         float rand = Random.Range(0,30f);
         if (rand <= 3) {
             GameObject ammo = Instantiate(AmmoPrefab,transform.position,transform.rotation);
+            // powerups.Add(ammo);
+            // InGameUI.UpdatePowerups(powerups);
         } else if (rand > 3 && rand <= 10) {
             GameObject invincibility = Instantiate(InvincPrefab,transform.position,transform.rotation);
         } else if (rand > 10 && rand <= 20) {
