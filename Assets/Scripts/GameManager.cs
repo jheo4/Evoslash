@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Calculates the number of enemies to spawn for the given wave
     private static int CalculateNumberOfEnemies(int waveNumber)
     {
-        return 10 + (waveNumber * 5);
+        return 20 + (waveNumber * 10);
     }
 
     public enum GameState
