@@ -17,6 +17,7 @@ public class PlayerHP : LivingObject
     private PlayerSword playerSword;
     private PlayerGun playerGun;
 
+    private bool isInvinncible = false;
 
     private void Awake()
     {
@@ -51,6 +52,7 @@ public class PlayerHP : LivingObject
 
     public override void OnHit(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
+        if (isInvinncible) return;
         if(isLive) {
             audioPlayer.PlayOneShot(hitSound);
         }
@@ -81,5 +83,10 @@ public class PlayerHP : LivingObject
                 audioPlayer.PlayOneShot(itemPickupSound);
             }
         }
+    }
+
+    public void SetInvincible(bool invincible)
+    {
+        this.isInvinncible = invincible;
     }
 }

@@ -8,10 +8,14 @@ public class PowerupManager : MonoBehaviour
     private List<Powerup.Active> activePowerups;
     private InGameUI ui;
     private float secondCounter = 0f;
+    private PlayerMovement playerMovement;
+    private PlayerHP playerHp;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+        this.playerHp = this.gameObject.GetComponent<PlayerHP>();
         this.ui = InGameUI.instance;
         activePowerups = new List<Powerup.Active>();
         this.UpdateUI();
@@ -30,6 +34,7 @@ public class PowerupManager : MonoBehaviour
                 this.activePowerups[i].remaining -= 1;
                 if (this.activePowerups[i].remaining <= 0)
                 {
+                    this.EndPowerup(this.activePowerups[i].type);
                     this.activePowerups.RemoveAt(i);
                     i--;
                 }
@@ -57,6 +62,7 @@ public class PowerupManager : MonoBehaviour
         if (!found)
         {
             this.activePowerups.Add(new Powerup.Active(duration, type));
+            this.BeginPowerup(type);
         }
 
         this.UpdateUI();
@@ -65,5 +71,31 @@ public class PowerupManager : MonoBehaviour
     private void UpdateUI()
     {
         this.ui.UpdatePowerups(this.activePowerups);
+    }
+
+    private void BeginPowerup(Powerup.Type type)
+    {
+        switch (type)
+        {
+            case Powerup.Type.Speed:
+                this.playerMovement.SetMoveSpeedMultplier(2f);
+                break;
+            case Powerup.Type.Invincibility:
+                this.playerHp.SetInvincible(true);
+                break;
+        }
+    }
+
+    private void EndPowerup(Powerup.Type type)
+    {
+        switch (type)
+        {
+            case Powerup.Type.Speed:
+                this.playerMovement.SetMoveSpeedMultplier(1f);
+                break;
+            case Powerup.Type.Invincibility:
+                this.playerHp.SetInvincible(false);
+                break;
+        }
     }
 }
