@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     private AudioSource audioPlayer;
     public AudioClip fireSound, reloadSound;
 
-    public float damage = 10;
+    public float damage = 25;
     public float range = 20f;
 
     public int currentAmmo = 150;

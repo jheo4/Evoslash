@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     private int totalEnemies;
     private int enemiesRemainingToSpawn;
     private int enemiesRemaining;
+    private PlayerEXP playerEXP;
 
     // Gets whether the game has ended
     public bool IsEnd {
@@ -95,6 +96,8 @@ public class GameManager : MonoBehaviour
         this.UpdateUI();
 
         FindObjectOfType<PlayerHP>().onDeath += LoseGame; // add an subscriber to the delegate
+
+        playerEXP = FindObjectOfType<PlayerEXP>();
     }
 
     // Update is called every frame
@@ -209,5 +212,11 @@ public class GameManager : MonoBehaviour
         this.state = GameState.LOSS;
         this.pauseMenu.Disable();
         this.endGameScreen.ShowLoss();
+    }
+
+
+    public void AddPlayerEXP(float exp)
+    {
+        playerEXP.addExperience(exp);
     }
 }

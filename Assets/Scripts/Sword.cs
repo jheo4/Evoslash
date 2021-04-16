@@ -57,13 +57,14 @@ public class Sword : MonoBehaviour
     {
         if (state == State.Attack && c.tag == "Zombie")
         {
-            print("Hit zombie!");
             Zombie zombie = c.GetComponent<Zombie>();
             if (zombie != null)
             {
-                playerEXP.addExperience(10);
                 audioPlayer.PlayOneShot(contactAudio);
-                zombie.Die();
+
+                Vector3 hitPoint = c.ClosestPoint(transform.position);
+                Vector3 hitNormal = transform.position - c.transform.position;
+                zombie.OnHit(damage, hitPoint, hitNormal);
             }
         }
 
