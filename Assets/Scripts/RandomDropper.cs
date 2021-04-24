@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Deprecated: replaced by VolumePowerupDropper
 public class RandomDropper : MonoBehaviour
 {
     public GameObject AmmoPrefab;
@@ -11,7 +12,7 @@ public class RandomDropper : MonoBehaviour
     public GameObject HealthPack;
     private NavMeshAgent navMeshAgent;
     private float timePassed;
-    private float rate = 10f;
+    private float rate = 4f;
     private List<GameObject> powerups;
     // Start is called before the first frame update
     void Start()
