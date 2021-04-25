@@ -48,6 +48,16 @@ public class Sword : MonoBehaviour
             state = State.Attack;
             audioPlayer.PlayOneShot(swingAudio);
             animator.SetTrigger("SlashTrigger");
+
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Katana Swing Cross Body RL"))
+            {
+                animator.SetBool("currRL", true);
+            }
+            else
+            {
+                animator.SetBool("currRL", false);
+            }
+
             yield return new WaitForSeconds(attackTime);
             state = State.Ready;
         }
