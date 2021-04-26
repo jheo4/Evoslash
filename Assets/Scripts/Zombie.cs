@@ -131,7 +131,7 @@ public class Zombie : LivingObject
     public override void OnHit(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         if(isLive) {
-            audioPlayer.PlayOneShot(hitSound);
+            audioPlayer.PlayOneShot(hitSound, 0.3f);
         }
         base.OnHit(damage, hitPoint, hitNormal);
     }
@@ -151,7 +151,7 @@ public class Zombie : LivingObject
         agent.isStopped = true;
         agent.enabled = false;
         anim.SetTrigger("Die");
-        audioPlayer.PlayOneShot(deathSound);
+        audioPlayer.PlayOneShot(deathSound, 0.3f);
         zombieRigidbody.velocity = transform.forward * 0;
         zombieRigidbody.freezeRotation = true;
         Collider[] zombieColliders = GetComponents<Collider>();
@@ -175,7 +175,7 @@ public class Zombie : LivingObject
         lastAttackTime = Time.time;
         currState = AIState.Attack;
         anim.SetTrigger("attackTrigger");
-        audioPlayer.PlayOneShot(attackSound);
+        audioPlayer.PlayOneShot(attackSound, 0.3f);
         Vector3 hitPoint = other.ClosestPoint(transform.position);
         Vector3 hitNormal = transform.position - other.transform.position;
         other.GetComponent<LivingObject>().OnHit(this.attackDamage, hitPoint, hitNormal);

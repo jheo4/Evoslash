@@ -78,7 +78,7 @@ public class Gun : MonoBehaviour
         if (Time.timeScale != 0)
         {
             muzzleFireEffect.Play();
-            audioPlayer.PlayOneShot(fireSound);
+            audioPlayer.PlayOneShot(fireSound, 0.4f);
 
             bulletTrajectoryRenderer.SetPosition(0, muzzleTransform.position);
             bulletTrajectoryRenderer.SetPosition(1, hitPosition);
@@ -98,7 +98,7 @@ public class Gun : MonoBehaviour
     private IEnumerator ReloadRoutine()
     {
         state = State.Reloading;
-        audioPlayer.PlayOneShot(reloadSound);
+        audioPlayer.PlayOneShot(reloadSound, 0.7f);
         yield return new WaitForSeconds(reloadDelay);
 
         int reloadingAmmo = magazineCapacity - currentAmmoInMagazine;
