@@ -18,15 +18,15 @@ public class Gun : MonoBehaviour
     private AudioSource audioPlayer;
     public AudioClip fireSound, reloadSound;
 
-    public float damage = 25;
-    public float range = 20f;
+    public float damage = 50;
+    public float range = 30f;
 
-    public int currentAmmo = 150;
+    public int currentAmmo = 180;
     public int magazineCapacity = 30;
     public int currentAmmoInMagazine = 30;
 
     public float fireDelay = 0.1f;
-    public float reloadDelay = 2.0f;
+    public float reloadDelay = 1.5f;
     private float lastFireTime;
 
     private void Awake()

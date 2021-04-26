@@ -89,4 +89,11 @@ public class PlayerHP : LivingObject
     {
         this.isInvinncible = invincible;
     }
+
+
+    public void increaseMaxHP(int amountToIncrease)
+    {
+        maxHP = maxHP + amountToIncrease;
+        HPSlider.maxValue = maxHP;
+    }
 }
