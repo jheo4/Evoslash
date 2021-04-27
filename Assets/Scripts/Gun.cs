@@ -79,7 +79,6 @@ public class Gun : MonoBehaviour
         {
             muzzleFireEffect.Play();
             audioPlayer.PlayOneShot(fireSound, 0.15f);
-
             bulletTrajectoryRenderer.SetPosition(0, muzzleTransform.position);
             bulletTrajectoryRenderer.SetPosition(1, hitPosition);
             bulletTrajectoryRenderer.enabled = true;

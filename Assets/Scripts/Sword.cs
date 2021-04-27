@@ -71,7 +71,6 @@ public class Sword : MonoBehaviour
             if (zombie != null)
             {
                 audioPlayer.PlayOneShot(contactAudio, 0.3f);
-
                 Vector3 hitPoint = c.ClosestPoint(transform.position);
                 Vector3 hitNormal = transform.position - c.transform.position;
                 zombie.OnHit(damage, hitPoint, hitNormal);
