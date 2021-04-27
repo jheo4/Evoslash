@@ -46,7 +46,7 @@ public class Sword : MonoBehaviour
         if (Time.timeScale != 0)
         {
             state = State.Attack;
-            audioPlayer.PlayOneShot(swingAudio);
+            audioPlayer.PlayOneShot(swingAudio, 0.3f);
             animator.SetTrigger("SlashTrigger");
 
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Katana Swing Cross Body RL"))
@@ -70,8 +70,7 @@ public class Sword : MonoBehaviour
             Zombie zombie = c.GetComponent<Zombie>();
             if (zombie != null)
             {
-                audioPlayer.PlayOneShot(contactAudio);
-
+                audioPlayer.PlayOneShot(contactAudio, 0.3f);
                 Vector3 hitPoint = c.ClosestPoint(transform.position);
                 Vector3 hitNormal = transform.position - c.transform.position;
                 zombie.OnHit(damage, hitPoint, hitNormal);

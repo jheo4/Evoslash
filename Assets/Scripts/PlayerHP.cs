@@ -54,7 +54,7 @@ public class PlayerHP : LivingObject
     {
         if (isInvinncible) return;
         if(isLive) {
-            audioPlayer.PlayOneShot(hitSound);
+            audioPlayer.PlayOneShot(hitSound, 0.3f);
         }
         base.OnHit(damage, hitPoint, hitNormal);
         HPSlider.value = HP;
@@ -64,7 +64,7 @@ public class PlayerHP : LivingObject
     public override void Die()
     {
         base.Die();
-        audioPlayer.PlayOneShot(deathSound);
+        audioPlayer.PlayOneShot(deathSound, 0.3f);
         animator.SetTrigger("Die");
 
         playerMovement.enabled = false;
@@ -80,7 +80,7 @@ public class PlayerHP : LivingObject
             IItem item = other.GetComponent<IItem>();
             if(item != null) {
                 item.Use(gameObject);
-                audioPlayer.PlayOneShot(itemPickupSound);
+                audioPlayer.PlayOneShot(itemPickupSound, 0.15f);
             }
         }
     }
