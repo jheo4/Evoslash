@@ -18,15 +18,15 @@ public class Gun : MonoBehaviour
     private AudioSource audioPlayer;
     public AudioClip fireSound, reloadSound;
 
-    public float damage = 10;
-    public float range = 20f;
+    public float damage = 50;
+    public float range = 30f;
 
-    public int currentAmmo = 150;
+    public int currentAmmo = 180;
     public int magazineCapacity = 30;
     public int currentAmmoInMagazine = 30;
 
     public float fireDelay = 0.1f;
-    public float reloadDelay = 2.0f;
+    public float reloadDelay = 1.5f;
     private float lastFireTime;
 
     private void Awake()
@@ -78,11 +78,7 @@ public class Gun : MonoBehaviour
         if (Time.timeScale != 0)
         {
             muzzleFireEffect.Play();
-<<<<<<< Updated upstream
-            audioPlayer.PlayOneShot(fireSound);
-=======
             audioPlayer.PlayOneShot(fireSound, 0.15f);
->>>>>>> Stashed changes
 
             bulletTrajectoryRenderer.SetPosition(0, muzzleTransform.position);
             bulletTrajectoryRenderer.SetPosition(1, hitPosition);
@@ -102,11 +98,7 @@ public class Gun : MonoBehaviour
     private IEnumerator ReloadRoutine()
     {
         state = State.Reloading;
-<<<<<<< Updated upstream
-        audioPlayer.PlayOneShot(reloadSound);
-=======
         audioPlayer.PlayOneShot(reloadSound, 0.3f);
->>>>>>> Stashed changes
         yield return new WaitForSeconds(reloadDelay);
 
         int reloadingAmmo = magazineCapacity - currentAmmoInMagazine;

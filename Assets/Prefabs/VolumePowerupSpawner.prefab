@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6378272168791930132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6378272168791930128}
+  - component: {fileID: 6378272168791930129}
+  - component: {fileID: 6378272168791930134}
+  - component: {fileID: 6378272168791930135}
+  m_Layer: 0
+  m_Name: VolumePowerupSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6378272168791930128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378272168791930132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6378272168791930129
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378272168791930132}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &6378272168791930134
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378272168791930132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 80.37308, y: 1.3052487, z: 80.68584}
+  m_Center: {x: 0.014793396, y: 0.7680911, z: 2.0534153}
+--- !u!114 &6378272168791930135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6378272168791930132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aaeb70ced39554b81655eba7081c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInterval: 6
+  spawnIntervalVariance: 2
+  maxNavMeshSampleDistance: 5
+  navMeshSampleMask: -1
+  powerupSpawnOffset: {x: 0, y: 0.5, z: 0}
+  ammoSpawnWeight: 3
+  invincibilitySpawnWeight: 7
+  speedSpawnWeight: 10
+  healthSpawnWeight: 10
+  ammoPrefab: {fileID: 1045172808418600, guid: c8a394a0701f4856286cd8ed7edecad7, type: 3}
+  invincibilityPrefab: {fileID: 7994594720127926905, guid: 0cf508326275ba947bfdfc47771401d8,
+    type: 3}
+  speedPrefab: {fileID: 7994594720127926905, guid: 23fc07551bdff234a96011c3adce573a,
+    type: 3}
+  healthPrefab: {fileID: 7994594720127926905, guid: 5bdde24299ff8754b9d622c8555afc5c,
+    type: 3}

@@ -107,7 +107,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7f803d733179fc985e069a2778b85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZombiePrefab: {fileID: 1679528483755940171, guid: 2b71fd969666220679da6e12d7e5b659,
-    type: 3}
+  ZombiePrefab: {fileID: 565914601, guid: 238fdf1443b0a454092be4fbaeb88866, type: 3}
   spawnRateMin: 1
   spawnRateMax: 3
+  damageMax: 2
+  damageMin: 0.5
+  HPMax: 100
+  HPMin: 10
+  EXPMax: 20
+  EXPMin: 5

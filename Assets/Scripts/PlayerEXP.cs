@@ -53,9 +53,10 @@ public class PlayerEXP : MonoBehaviour
     private void levelUp() {
         // increase player health total
         PlayerHP php = playerReference.GetComponent<PlayerHP>();
-        php.HPSlider.maxValue = php.HPSlider.maxValue + 10;
+        php.increaseMaxHP(10);
+
         // heal player
-        php.Heal(php.HPSlider.maxValue - php.HPSlider.value);
+        php.Heal(php.maxHP);
         // play level up noise
         audioPlayer.PlayOneShot(levelUpSound, 0.5f);
 

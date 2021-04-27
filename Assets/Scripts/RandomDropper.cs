@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Deprecated: replaced by VolumePowerupDropper
 public class RandomDropper : MonoBehaviour
 {
     public GameObject AmmoPrefab;

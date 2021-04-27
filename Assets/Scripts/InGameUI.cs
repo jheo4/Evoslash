@@ -33,7 +33,7 @@ public class InGameUI : MonoBehaviour
     public Sprite invincibilitySprite;
 
     // Private instance fields
-    private float maxExperience;
+    private float maxExperience = 1f;
     private float experience;
     private List<GameObject> activePowerups = new List<GameObject>();
     private Dictionary<Powerup.Type, Sprite> powerupSprites = new Dictionary<Powerup.Type, Sprite>();

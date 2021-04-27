@@ -36,8 +36,8 @@ public class LivingObject : MonoBehaviour, IDamageable
 
     public virtual void Die()
     {
-        if(onDeath != null) onDeath();
         isLive = false;
+        if(onDeath != null) onDeath();
     }
 }
 
