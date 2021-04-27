@@ -26,7 +26,7 @@ public class Zombie : LivingObject
     public AudioClip attackSound;
     private AudioSource audioPlayer;
 
-    public float attackDamage = 3f;
+    public float attackDamage = 5f;
     public float attackDelay = 3.0f;
     private float lastAttackTime;
 
@@ -75,6 +75,13 @@ public class Zombie : LivingObject
             anim.SetTrigger("runTrigger");
         }
 
+        if (hasTargetObject && (transform.position - targetObject.transform.position).magnitude >= 30f) {
+            anim.SetFloat("speed",2);
+            this.speed = 2f;
+        } else {
+            anim.SetFloat("speed",1);
+            this.speed = 1f;
+        }
 
         /*
             case AIState.Chase:
@@ -178,7 +185,7 @@ public class Zombie : LivingObject
         audioPlayer.PlayOneShot(attackSound, 0.3f);
         Vector3 hitPoint = other.ClosestPoint(transform.position);
         Vector3 hitNormal = transform.position - other.transform.position;
-        other.GetComponent<LivingObject>().OnHit(this.attackDamage, hitPoint, hitNormal);
+        other.GetComponent<LivingObject>().OnHit(10.0f, hitPoint, hitNormal);
         yield return new WaitForSeconds(3.0f);
 
         currState = AIState.Chase;

@@ -6,9 +6,7 @@ using TMPro;
 
 public class Section1Unlock : MonoBehaviour
 {
-    public GameObject crate1;
-    public GameObject crate2;
-    public GameObject crate3;
+    public GameObject rock;
     public GameObject sword;
     public TextMeshProUGUI text;
     public GameObject spawner;
@@ -34,9 +32,7 @@ public class Section1Unlock : MonoBehaviour
 
     void OpenArea() {
         spawner.SetActive(true);
-        Destroy(crate1);
-        Destroy(crate2);
-        Destroy(crate3);
+        Destroy(rock);
         Destroy(text);
     }
 
