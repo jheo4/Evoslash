@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Section1Unlock : MonoBehaviour
+public class Section2Unlock : MonoBehaviour
 {
     public GameObject rock;
     public GameObject sword;
@@ -25,7 +25,7 @@ public class Section1Unlock : MonoBehaviour
     void Update()
     {
         level = playerEXP.level;
-        if (level >= 3 && Input.GetKeyDown(KeyCode.F)) {
+        if (level >= 5 && Input.GetKeyDown(KeyCode.F)) {
             this.OpenArea();
         }
     }
@@ -38,7 +38,7 @@ public class Section1Unlock : MonoBehaviour
 
     void OnTriggerEnter(Collider c) {
         if (c.tag == "Player") {
-            text.SetText("These crates are really heavy! I'll have to be at least level 3 to move them, and when I am, I should press the F key!");
+            text.SetText("These crates are really heavy! I'll have to be at least level 5 to move them, and when I am, I should press the F key!");
         }
     }
 
