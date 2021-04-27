@@ -75,7 +75,7 @@ public class Zombie : LivingObject
             anim.SetTrigger("runTrigger");
         }
 
-        if ((transform.position - targetObject.transform.position).magnitude >= 30f) {
+        if (hasTargetObject && (transform.position - targetObject.transform.position).magnitude >= 30f) {
             anim.SetFloat("speed",2);
             this.speed = 2f;
         } else {
@@ -185,7 +185,7 @@ public class Zombie : LivingObject
         audioPlayer.PlayOneShot(attackSound, 0.3f);
         Vector3 hitPoint = other.ClosestPoint(transform.position);
         Vector3 hitNormal = transform.position - other.transform.position;
-        other.GetComponent<LivingObject>().OnHit(15.0f, hitPoint, hitNormal);
+        other.GetComponent<LivingObject>().OnHit(5.0f, hitPoint, hitNormal);
         yield return new WaitForSeconds(3.0f);
 
         currState = AIState.Chase;
