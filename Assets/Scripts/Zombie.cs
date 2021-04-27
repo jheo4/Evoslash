@@ -56,8 +56,16 @@ public class Zombie : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
+=======
+
+    public override void OnHit(float damage, Vector3 hitPoint, Vector3 hitNormal)
+    {
+        if(isLive) {
+            audioPlayer.PlayOneShot(hitSound, 0.08f);
+>>>>>>> Stashed changes
         }
 
         //if(other.tag == "Wall") {
@@ -67,9 +75,49 @@ public class Zombie : MonoBehaviour
         //}
     }
 
+<<<<<<< Updated upstream
     public void Die() {
         GameManager.instance.OnEnemyDeath();
         Destroy(gameObject);
+=======
+
+    private IEnumerator DeathCoroutine()
+    {
+        agent.isStopped = true;
+        agent.enabled = false;
+        anim.SetTrigger("Die");
+        audioPlayer.PlayOneShot(deathSound, 0.08f);
+        zombieRigidbody.velocity = transform.forward * 0;
+        zombieRigidbody.freezeRotation = true;
+        Collider[] zombieColliders = GetComponents<Collider>();
+        for(int i = 0; i < zombieColliders.Length; i++) zombieColliders[i].enabled = false;
+        yield return new WaitForSeconds(3.0f);
+
+    }
+
+
+    void OnTriggerStay(Collider other) {
+        if(isLive && Time.time >= lastAttackTime + attackDelay && currState == AIState.Chase) {
+            LivingObject attackTarget = other.GetComponent<LivingObject>();
+            if(attackTarget != null && attackTarget == targetObject) { // attack only chasing object
+                StartCoroutine(Attack(other));
+            }
+        }
+    }
+
+
+    private IEnumerator Attack(Collider other) {
+        lastAttackTime = Time.time;
+        currState = AIState.Attack;
+        anim.SetTrigger("attackTrigger");
+        audioPlayer.PlayOneShot(attackSound, 0.3f);
+        Vector3 hitPoint = other.ClosestPoint(transform.position);
+        Vector3 hitNormal = transform.position - other.transform.position;
+        other.GetComponent<LivingObject>().OnHit(this.attackDamage, hitPoint, hitNormal);
+        yield return new WaitForSeconds(3.0f);
+
+        currState = AIState.Chase;
+>>>>>>> Stashed changes
     }
 }
 

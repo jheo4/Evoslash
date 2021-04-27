@@ -46,7 +46,7 @@ public class Sword : MonoBehaviour
         if (Time.timeScale != 0)
         {
             state = State.Attack;
-            audioPlayer.PlayOneShot(swingAudio);
+            audioPlayer.PlayOneShot(swingAudio, 0.3f);
             animator.SetTrigger("SlashTrigger");
             yield return new WaitForSeconds(attackTime);
             state = State.Ready;
@@ -61,9 +61,17 @@ public class Sword : MonoBehaviour
             Zombie zombie = c.GetComponent<Zombie>();
             if (zombie != null)
             {
+<<<<<<< Updated upstream
                 playerEXP.addExperience(10);
                 audioPlayer.PlayOneShot(contactAudio);
                 zombie.Die();
+=======
+                audioPlayer.PlayOneShot(contactAudio, 0.3f);
+
+                Vector3 hitPoint = c.ClosestPoint(transform.position);
+                Vector3 hitNormal = transform.position - c.transform.position;
+                zombie.OnHit(damage, hitPoint, hitNormal);
+>>>>>>> Stashed changes
             }
         }
 

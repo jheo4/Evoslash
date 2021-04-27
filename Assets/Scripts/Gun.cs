@@ -78,7 +78,11 @@ public class Gun : MonoBehaviour
         if (Time.timeScale != 0)
         {
             muzzleFireEffect.Play();
+<<<<<<< Updated upstream
             audioPlayer.PlayOneShot(fireSound);
+=======
+            audioPlayer.PlayOneShot(fireSound, 0.15f);
+>>>>>>> Stashed changes
 
             bulletTrajectoryRenderer.SetPosition(0, muzzleTransform.position);
             bulletTrajectoryRenderer.SetPosition(1, hitPosition);
@@ -98,7 +102,11 @@ public class Gun : MonoBehaviour
     private IEnumerator ReloadRoutine()
     {
         state = State.Reloading;
+<<<<<<< Updated upstream
         audioPlayer.PlayOneShot(reloadSound);
+=======
+        audioPlayer.PlayOneShot(reloadSound, 0.3f);
+>>>>>>> Stashed changes
         yield return new WaitForSeconds(reloadDelay);
 
         int reloadingAmmo = magazineCapacity - currentAmmoInMagazine;

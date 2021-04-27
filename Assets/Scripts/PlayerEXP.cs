@@ -57,7 +57,7 @@ public class PlayerEXP : MonoBehaviour
         // heal player
         php.Heal(php.HPSlider.maxValue - php.HPSlider.value);
         // play level up noise
-        audioPlayer.PlayOneShot(levelUpSound);
+        audioPlayer.PlayOneShot(levelUpSound, 0.5f);
 
         level += 1;
         // increse maximum exp needed to level up
