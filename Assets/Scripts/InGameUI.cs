@@ -123,4 +123,10 @@ public class InGameUI : MonoBehaviour
             }
         }
     }
+
+    // Sets the temporary objective text that can be displayed on an interactable
+    public void SetInteractiveText(string text)
+    {
+        // TODO implement
+    }
 }
