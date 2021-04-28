@@ -21,9 +21,17 @@ public class VolumePowerupDropper : MonoBehaviour
 
     private BoxCollider volume;
     private float currentSpawnIntervalRemaining;
+    private PlayerVisibilityTester playerVisibility;
 
     void Start()
     {
+        // Obtain a reference to the PlayerVisibilityTester
+        this.playerVisibility = FindObjectOfType<PlayerVisibilityTester>();
+        if (this.playerVisibility == null)
+        {
+            Debug.LogError("No instance of PlayerVisibilityTester found in scene");
+        }
+
         this.volume = this.GetComponent<BoxCollider>();
         this.ResetSpawn();
     }
@@ -35,15 +43,26 @@ public class VolumePowerupDropper : MonoBehaviour
         {
             this.ResetSpawn();
 
-            // Spawn a random powerup at a random location inside the volume,
-            // then projected onto the NavMesh
-            Vector3 volumeLocation = this.RandomPointInVolume();
-            NavMeshHit hit;
-            NavMesh.SamplePosition(volumeLocation, out hit, this.maxNavMeshSampleDistance, this.navMeshSampleMask);
-            Vector3 navMeshLocation = hit.position;
+            Vector3 position;
+            while (true)
+            {
+                // Spawn a random powerup at a random location inside the volume,
+                // then projected onto the NavMesh
+                Vector3 volumeLocation = this.RandomPointInVolume();
+                NavMeshHit hit;
+                NavMesh.SamplePosition(volumeLocation, out hit, this.maxNavMeshSampleDistance, this.navMeshSampleMask);
+
+                // Ensure that the point isn't visible to the player
+                if (!this.playerVisibility.IsVisible(hit.position))
+                {
+                    position = hit.position;
+                    break;
+                }
+            }
+
             Quaternion rotation = Quaternion.AngleAxis(Random.Range(0f, 360f), new Vector3(0, 1, 0));
             GameObject prefab = this.SelectPickup();
-            Instantiate(prefab, navMeshLocation + this.powerupSpawnOffset, rotation);
+            Instantiate(prefab, position + this.powerupSpawnOffset, rotation);
         }
     }
 

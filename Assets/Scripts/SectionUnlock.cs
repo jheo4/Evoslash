@@ -9,11 +9,13 @@ public class SectionUnlock : MonoBehaviour
     public GameObject sword;
     public GameObject spawnerRoot;
     public int levelThreshold;
+    public string incentive;
 
     // Private instance variables
     private InGameUI ui;
     private PlayerEXP playerEXP;
-    private bool playerInRange;
+    private bool playerInRange = false;
+    private bool opened = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,28 @@ public class SectionUnlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.playerInRange && !this.opened) {
+            string baseText = "These rocks are really heavy, but I can see a stash of " + incentive + " behind them!\n\n";
+            if (this.playerEXP.level >= this.levelThreshold)
+            {
+                ui.SetInteractiveText(baseText +
+                    "<i>Press F to move rocks</i>");
+            }
+            else
+            {
+                ui.SetInteractiveText(baseText +
+                    "<i>Minimum level: " +
+                    this.levelThreshold +
+                    "</i>");
+            }
+        }
+        else
+        {
+            ui.SetInteractiveText("");
+        }
+
         if (this.playerInRange &&
+            !this.opened &&
             playerEXP.level >= this.levelThreshold &&
             Input.GetKeyDown(KeyCode.F)) {
             this.OpenArea();
@@ -43,13 +66,11 @@ public class SectionUnlock : MonoBehaviour
     {
         spawnerRoot.SetActive(true);
         Destroy(rock);
+        this.opened = true;
     }
 
     void OnTriggerEnter(Collider c) {
         if (c.tag == "Player") {
-            ui.SetInteractiveText("These rocks are really heavy! I'll have to be at least level "
-                + this.levelThreshold
-                + " to move them, and when I am, I should press the F key!");
             this.playerInRange = true;
         }
     }

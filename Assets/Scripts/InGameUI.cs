@@ -24,6 +24,7 @@ public class InGameUI : MonoBehaviour
     public Text ammoText;
     public Image experienceBar;
     public Text levelText;
+    public Text interactableText;
     public GameObject activePowerupTemplate = null;
     public Transform spawnPoint = null;
     public float powerupPadding = 2f;
@@ -44,6 +45,7 @@ public class InGameUI : MonoBehaviour
         this.SetExperience(0.0f);
         this.powerupSprites[Powerup.Type.Speed] = this.speedSprite;
         this.powerupSprites[Powerup.Type.Invincibility] = this.invincibilitySprite;
+        this.SetInteractiveText("");
     }
 
     // Sets the objective text on the in-game UI
@@ -127,6 +129,6 @@ public class InGameUI : MonoBehaviour
     // Sets the temporary objective text that can be displayed on an interactable
     public void SetInteractiveText(string text)
     {
-        // TODO implement
+        this.interactableText.text = text;
     }
 }
