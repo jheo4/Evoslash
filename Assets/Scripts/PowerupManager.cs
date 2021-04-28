@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerupManager : MonoBehaviour
 {
     // Private instance fields
-    private List<Powerup.Active> activePowerups;
+    private List<Powerup.Active> activePowerups = new List<Powerup.Active>();
     private InGameUI ui;
     private float secondCounter = 0f;
     private PlayerMovement playerMovement;
@@ -17,7 +17,6 @@ public class PowerupManager : MonoBehaviour
         this.playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         this.playerHp = this.gameObject.GetComponent<PlayerHP>();
         this.ui = InGameUI.instance;
-        activePowerups = new List<Powerup.Active>();
         this.UpdateUI();
     }
 
