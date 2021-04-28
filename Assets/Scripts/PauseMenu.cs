@@ -10,16 +10,24 @@ public class PauseMenu : MonoBehaviour
 
     // Instance fields
     private MenuScreenBlur screenBlur;
+    private ControlsMenu controlsMenu;
     private bool disabled = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Obtain a reference to the UI
+        // Obtain a reference to the MenuScreenBlur
         this.screenBlur = FindObjectOfType<MenuScreenBlur>();
         if (this.screenBlur == null)
         {
             Debug.LogError("No instance of MenuScreenBlur found in scene");
+        }
+
+        // Obtain a reference to the ControlsMenu
+        this.controlsMenu = FindObjectOfType<ControlsMenu>();
+        if (this.controlsMenu == null)
+        {
+            Debug.LogError("No instance of ControlsMenu found in scene");
         }
 
         // Hide the pause menu
@@ -29,6 +37,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("PauseMenu::Update():" + this.disabled);
         if (this.disabled) return;
 
         // Check for Escape being pressed
@@ -46,10 +55,16 @@ public class PauseMenu : MonoBehaviour
     }
 
     // Used to disable the pause menu
-    // to stop it from showing even when the Esc key is pressed
+    // to stop it from showing/hiding even when the Esc key is pressed
     public void Disable()
     {
         this.disabled = true;
+    }
+
+    // Used to re-enable the pause menu
+    public void Enable()
+    {
+        this.disabled = false;
     }
 
     // Shows the pause menu and freezes time
@@ -72,6 +87,22 @@ public class PauseMenu : MonoBehaviour
     public void OnResume()
     {
         this.Hide();
+    }
+
+    // OnControls is called when the user clicks the "Controls" button
+    public void OnControls()
+    {
+        // Hide the pause menu
+        this.inner.SetActive(false);
+        this.Disable();
+
+        // Show the controls menu,
+        // and pass a callback that is called when it is closed
+        this.controlsMenu.Show(() =>
+        {
+            this.Enable();
+            this.inner.SetActive(true);
+        });
     }
 
     // OnQuit is called when the user clicks the "Quit" button
