@@ -49,10 +49,6 @@ public class SectionUnlock : MonoBehaviour
                     "</i>");
             }
         }
-        else
-        {
-            ui.SetInteractiveText("");
-        }
 
         if (this.playerInRange &&
             !this.opened &&
@@ -67,6 +63,7 @@ public class SectionUnlock : MonoBehaviour
         spawnerRoot.SetActive(true);
         Destroy(rock);
         this.opened = true;
+        ui.SetInteractiveText("");
     }
 
     void OnTriggerEnter(Collider c) {
