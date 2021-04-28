@@ -76,7 +76,6 @@ public class PlayerHP : LivingObject
     private void OnTriggerEnter(Collider other)
     {
         if(isLive) {
-            print("OnTriggerEnter Item");
             IItem item = other.GetComponent<IItem>();
             if(item != null) {
                 item.Use(gameObject);

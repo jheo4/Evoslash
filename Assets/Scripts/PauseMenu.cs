@@ -37,7 +37,6 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("PauseMenu::Update():" + this.disabled);
         if (this.disabled) return;
 
         // Check for Escape being pressed
