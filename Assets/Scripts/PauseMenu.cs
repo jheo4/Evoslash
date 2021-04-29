@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     // Instance fields
     private MenuScreenBlur screenBlur;
     private ControlsMenu controlsMenu;
+    private MouseHiding mouseHiding;
     private bool disabled = false;
 
     // Start is called before the first frame update
@@ -28,6 +29,13 @@ public class PauseMenu : MonoBehaviour
         if (this.controlsMenu == null)
         {
             Debug.LogError("No instance of ControlsMenu found in scene");
+        }
+
+        // Obtain a reference to the MouseHiding
+        this.mouseHiding = FindObjectOfType<MouseHiding>();
+        if (this.mouseHiding == null)
+        {
+            Debug.LogError("No instance of MouseHiding found in scene");
         }
 
         // Hide the pause menu
@@ -69,6 +77,7 @@ public class PauseMenu : MonoBehaviour
     // Shows the pause menu and freezes time
     private void Show()
     {
+        this.mouseHiding.OnGuiOpen();
         this.screenBlur.Blur(this.blurAnimationDuration);
         this.inner.SetActive(true);
         Time.timeScale = 0f;
@@ -77,6 +86,7 @@ public class PauseMenu : MonoBehaviour
     // Hides the pause menu and unfreezes time
     private void Hide()
     {
+        this.mouseHiding.OnGuiClose();
         this.screenBlur.Unblur(this.blurAnimationDuration);
         this.inner.SetActive(false);
         Time.timeScale = 1f;

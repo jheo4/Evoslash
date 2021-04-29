@@ -16,6 +16,7 @@ public class EndGameScreen : MonoBehaviour
 
     // Instance fields
     private MenuScreenBlur screenBlur;
+    private MouseHiding mouseHiding;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,13 @@ public class EndGameScreen : MonoBehaviour
             Debug.LogError("No instance of MenuScreenBlur found in scene");
         }
 
+        // Obtain a reference to the MouseHiding
+        this.mouseHiding = FindObjectOfType<MouseHiding>();
+        if (this.mouseHiding == null)
+        {
+            Debug.LogError("No instance of MouseHiding found in scene");
+        }
+
         // Hide the inner menu
         this.inner.SetActive(false);
     }
@@ -35,6 +43,7 @@ public class EndGameScreen : MonoBehaviour
     // including showing the inner menu and blurring the screen
     private void Show()
     {
+        this.mouseHiding.OnGuiOpen();
         this.inner.SetActive(true);
         this.screenBlur.Blur(this.blurAnimationDuration);
     }
