@@ -15,10 +15,18 @@ public class ControlsMenu : MonoBehaviour
     // Private instance fields
     private bool isShown = false;
     private Action closeCallback = null;
+    private MouseHiding mouseHiding;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Obtain a reference to the MouseHiding
+        this.mouseHiding = FindObjectOfType<MouseHiding>();
+        if (this.mouseHiding == null)
+        {
+            Debug.LogError("No instance of MouseHiding found in scene");
+        }
+
         // If the controls haven't been shown,
         // then show them and blur the screen/pause time
         if (!ControlsMenu.hasShownControls)
@@ -80,6 +88,7 @@ public class ControlsMenu : MonoBehaviour
     {
         if (!this.isShown) return;
 
+        this.mouseHiding.OnGuiClose();
         this.inner.SetActive(false);
         this.isShown = false;
         this.closeCallback();
@@ -92,6 +101,7 @@ public class ControlsMenu : MonoBehaviour
     {
         if (this.isShown) return;
 
+        this.mouseHiding.OnGuiOpen();
         this.inner.SetActive(true);
         this.isShown = true;
         this.closeCallback = onHide;
