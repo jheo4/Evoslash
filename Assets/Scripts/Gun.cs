@@ -14,6 +14,7 @@ public class Gun : MonoBehaviour
     public Transform muzzleTransform;
     public ParticleSystem muzzleFireEffect;
 
+    public LineRenderer laserSightRenderer;
     private LineRenderer bulletTrajectoryRenderer;
     private AudioSource audioPlayer;
     public AudioClip fireSound, reloadSound;
@@ -36,6 +37,9 @@ public class Gun : MonoBehaviour
         bulletTrajectoryRenderer = GetComponent<LineRenderer>();
         bulletTrajectoryRenderer.positionCount = 2;
         bulletTrajectoryRenderer.enabled = false;
+
+        laserSightRenderer.positionCount = 2;
+        laserSightRenderer.enabled = true;
     }
 
     private void OnEnable()
@@ -43,6 +47,37 @@ public class Gun : MonoBehaviour
         //currentAmmoInMagazine = magazineCapacity;
         state = State.Ready;
         lastFireTime = 0;
+        this.DrawLaserSight();
+    }
+
+    // Gets the layer mask used for the laser sights
+    private int LayerMask()
+    {
+        // Mask: layer 11 (enemies) | layer 10 (level)
+        return (1 << 11) | (1 << 10);
+    }
+
+    private void DrawLaserSight()
+    {
+        RaycastHit hit;
+        Vector3 hitPosition = Vector3.zero;
+
+        if (Physics.Raycast(muzzleTransform.position, muzzleTransform.forward, out hit, range, this.LayerMask()))
+        {
+            hitPosition = hit.point;
+        }
+        else
+        {
+            hitPosition = muzzleTransform.position + muzzleTransform.forward * range;
+        }
+
+        this.laserSightRenderer.SetPosition(0, muzzleTransform.position);
+        this.laserSightRenderer.SetPosition(1, hitPosition);
+    }
+
+    private void Update()
+    {
+        this.DrawLaserSight();
     }
 
     public void Fire()
